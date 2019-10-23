@@ -47,13 +47,33 @@ namespace HospitalManagementSystem.Models
                 return userRole;
          }
 
-        public HomeViewModel getUserById(int id)
+        public HomeViewModel getUserById(int? id)
         {
             return db.users.Where(x => x.id == id).Select(x => new HomeViewModel
             {
-                Firstname =x.firstname
+                Id =x.id,
+                Firstname = x.firstname,
+                Lastname = x.lastname,
+                Username=x.username,
+                Password=x.password,
+                Email=x.email,
+                AcocuntType=x.accounttype
 
             }).SingleOrDefault();
+        }
+
+        public bool editUser(HomeViewModel model)
+        {
+            var editUser = db.users.Where(x => x.id == model.Id).FirstOrDefault();
+            editUser.id = model.Id;
+            editUser.firstname = model.Firstname;
+            editUser.lastname = model.Lastname;
+            editUser.username = model.Username;
+            editUser.password = model.Password;
+            editUser.email = model.Email;
+            editUser.accounttype = model.AcocuntType;
+            db.SubmitChanges();
+            return true;
         }
     }
 }

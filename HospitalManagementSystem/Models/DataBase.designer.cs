@@ -224,6 +224,10 @@ namespace HospitalManagementSystem.Models
 		
 		private string _password;
 		
+		private string _email;
+		
+		private string _hide;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -240,6 +244,10 @@ namespace HospitalManagementSystem.Models
     partial void OnusernameChanged();
     partial void OnpasswordChanging(string value);
     partial void OnpasswordChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
+    partial void OnhideChanging(string value);
+    partial void OnhideChanged();
     #endregion
 		
 		public user()
@@ -363,6 +371,46 @@ namespace HospitalManagementSystem.Models
 					this._password = value;
 					this.SendPropertyChanged("password");
 					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NVarChar(100)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hide", DbType="NVarChar(2)")]
+		public string hide
+		{
+			get
+			{
+				return this._hide;
+			}
+			set
+			{
+				if ((this._hide != value))
+				{
+					this.OnhideChanging(value);
+					this.SendPropertyChanging();
+					this._hide = value;
+					this.SendPropertyChanged("hide");
+					this.OnhideChanged();
 				}
 			}
 		}

@@ -1,6 +1,7 @@
 ﻿@model HospitalManagementSystem.Viewmodels.HomeViewModel
 @{
     ViewBag.Title = "doctors";
+    
 
 }
 <!DOCTYPE html>
@@ -44,9 +45,18 @@
                         <td>
                             <a href="@Url.Action("Edit", "Home", new { Id = @user.id })"> <i class="fa fa-eye" aria-hidden="true" style="font-size:15px;"></i> </a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="@Url.Action("Edit", "Home", new { Id = @user.id })"> <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:15px;"></i> </a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="@Url.Action("Delete", "Home", new { Id = @user.id })"> <i class="fa fa-trash" aria-hidden="true" style="font-size:15px;"></i> </a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-mini" onclick="Add(@user.id ,'@user.firstname','Edit','Home');" href="javascript:void(0);"><i class="fa fa-pencil"></i>&nbsp; &nbsp; &nbsp; &nbsp;</a>
+
+                                    <a href="@Url.Action("Delete", "Home", new { Id = @user.id })"> <i class="fa fa-trash" aria-hidden="true" style="font-size:15px;"></i> </a>
+                                }
+                            }
+
+                            @*<a href="@Url.Action("Edit", "Home", new { Id = @user.id })"> <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:15px;"></i> </a>*@
+
                         </td>
 
                     </tr>

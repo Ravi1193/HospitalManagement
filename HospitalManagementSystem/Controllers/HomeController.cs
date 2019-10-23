@@ -84,6 +84,47 @@ namespace HospitalManagementSystem.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            try
+            {
+                ViewBag.AccountType = new SelectList(ac.Accounttypes(), "id", "accounttype");
+                HomeRepository hr = new HomeRepository();
+                var model = hr.getUserById(id);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex);
+            }
+        }
+        [HttpPost]
+        public ActionResult Edit(HomeViewModel hv)
+        {
+            try
+            {
+                ViewBag.AccountType = new SelectList(ac.Accounttypes(), "Id", "accounttype");
+                if (ModelState.IsValid)
+                {
+                    HomeRepository hr = new HomeRepository();
+                    var eUser = hr.editUser(hv);
+                    if(eUser)
+                    {
+                        TempData["addUser"] = "User Updated Succesfully";
+                        return PartialView("Edit");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Something Went Wrong");
+                    }
+                }
+                return View(hv);
+            }catch(Exception ex)
+            {
+                return View("Error", ex);
+            }
+        }
         public ActionResult notFound()
         {
             return View("_CustomError");

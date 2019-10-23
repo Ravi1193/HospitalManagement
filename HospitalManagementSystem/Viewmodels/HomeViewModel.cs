@@ -25,7 +25,7 @@ namespace HospitalManagementSystem.Viewmodels
         public string  Password { get; set; }
 
         [Required]
-        public int AcocuntType { get; set; }
+        public int? AcocuntType { get; set; }
 
         public string  Status{ get; set; }
 

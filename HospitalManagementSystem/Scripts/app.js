@@ -11,7 +11,7 @@
 
     if (Id > 0) {
         $.ajax({
-            url: "./" + Controller + "/" + Action + "",
+            url: "/" + Controller + "/" + Action + "",
             type: 'GET',
             data: { id: Id },
             success: function (result) {

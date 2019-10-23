@@ -1219,6 +1219,7 @@
     <Content Include="Views\Shared\_CustomError.cshtml" />
     <Content Include="Views\Home\doctors.cshtml" />
     <Content Include="Views\Home\addDoctor.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
