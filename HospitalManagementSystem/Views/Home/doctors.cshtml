@@ -1,0 +1,74 @@
+﻿@model HospitalManagementSystem.Viewmodels.HomeViewModel
+@{
+    ViewBag.Title = "doctors";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        <h3>Doctor Dashboard</h3>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("admin"))
+            {
+                <a href="javascript:void(0);" onclick="Add(0,'Doctor','addDoctor','Home');" style="margin-left:1038px"><i class="fa fa-plus" aria-hidden="true" style="font-size:23px;"> </i>&nbsp;&nbsp;&nbsp;</a>
+                <a href="@Url.Action("addUser", "Home")"><i class="fa fa-print" aria-hidden="true" style="font-size:23px;"> </i>&nbsp;&nbsp;&nbsp;</a>
+                <a href="@Url.Action("addUser", "Home")"><i class="fa fa-file-excel-o" aria-hidden="true" style="font-size:23px;"> </i>&nbsp;&nbsp;&nbsp;</a>
+            }
+        }
+        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in ViewBag.getAllDoctors)
+                {
+                    <tr>
+                        <td>@user.firstname</td>
+                        <td>@user.lastname</td>
+                        <td>@user.email</td>
+                        <td>@user.username</td>
+
+                        <td>
+                            <a href="@Url.Action("Edit", "Home", new { Id = @user.id })"> <i class="fa fa-eye" aria-hidden="true" style="font-size:15px;"></i> </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="@Url.Action("Edit", "Home", new { Id = @user.id })"> <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:15px;"></i> </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="@Url.Action("Delete", "Home", new { Id = @user.id })"> <i class="fa fa-trash" aria-hidden="true" style="font-size:15px;"></i> </a>
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+
+    </div>
+    <div class="modal fade in" id="Add_">
+        <div id="AddModel_" class="modal-dialog PopUpChart" style="width:800px;margin-top:80PX;"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+</script>

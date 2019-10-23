@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+<div id="container" class="cls-container">
+    <div class="cls-content">
+        <div class="dz-error-message">
+            <div class="col-sm-12 page-error">
+                <div class="text-5x" style="color:red"> Error </div>
+                <div class="error-details col-sm-6 col-sm-offset-3">
+                    <h3> Oops!</h3>
+                    Something's wrong!
+                    <h3>@Model.Message</h3>
+                    <br>
+                    <p>@Model.StackTrace</p>
+                    <br>
+                    @if (Model.InnerException != null)
+                    {
+                        <h3>@Model.InnerException.Message</h3>
+                        <p>@Model.InnerException.StackTrace</p>
+                    }
+
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-return"> <i class="fa fa-home"> </i> Back to Dashboard </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

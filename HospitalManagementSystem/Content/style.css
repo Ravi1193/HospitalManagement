@@ -1,0 +1,17 @@
+﻿
+.modal-header {
+    background: #f2f2f2;
+    height: 45px;
+}
+
+.modal-header .close {
+    background: #ec3122;
+    margin-right: -15px;
+    border-radius: 0;
+    height: 45px;
+    width: 45px;
+}
+.errorSymbol{
+    color:red;
+}
+
